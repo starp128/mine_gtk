@@ -1,0 +1,29 @@
+Sat Jun  1 07:12:04 CST 2013
+1 right click bug fixed, widget can emmit a signal called button-press-signal.
+but a button can't accept right button clieck.i just removed the button,as i don't
+konwn how a button can emit right-clieck signal.instead of using a button,I use a Gtkeventox
+
+todo:
+fix the widget's size 
+It seems that the image resources dosen't destoryed in run time.
+
+
+Tue May 28 07:15:55 CST 2013
+1 rand bug fixed
+
+2013-5-26
+todo:
+1 right click event in gtk
+2 rand is not random
+
+
+finished
+1 final finished my first game in linux
+2 mine argorithm coding
+3 seperate argorithm and user interface in order to move to other platform easyly
+
+
+howto port 
+
+dierent ways to initialize a map
+the argorithm accept some event and return some status
