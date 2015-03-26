@@ -210,6 +210,9 @@ int main(int argc,char *argv[])
   
 
 	gtk_init(&argc,&argv);
+	/* get the version of gtk+ */
+	g_printf("%d.%d.%d\n",gtk_major_version,
+		 gtk_minor_version, gtk_micro_version);
 	window=creat_main_window();
 
 
