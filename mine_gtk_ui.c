@@ -102,12 +102,12 @@ void on_button_clicked(GtkWidget* button,GdkEvent *event,gpointer userdata)
 	gint index_x,index_y;
 	gint button_number=0;//1 means left 3 mean right
   
-	index_x=n/row;
-	index_y=n%row;
+	index_x=n/col;
+	index_y=n%col;
 	button_number=event->button.button;
 	//  g_print("button %d\n",event->button.button);
 
-	g_print("button %d x=%d,y=%d\n",button_number,index_x,index_y);
+	g_print("button %d index=%d,x=%d,y=%d\n",button_number,n,index_x,index_y);
 
 	//left click 
 	if(button_number==1)
@@ -168,7 +168,7 @@ GtkWidget* creat_box_table(gint row,gint col)
 		for(j=0;j<col;j++)
 		{
 			eventbox=gtk_event_box_new();
-			g_signal_connect(G_OBJECT(eventbox),"button-press-event",G_CALLBACK(on_button_clicked),(gpointer)(i*row+j));
+			g_signal_connect(G_OBJECT(eventbox),"button-press-event",G_CALLBACK(on_button_clicked),(gpointer)(i*col+j));
 		
 			image=gtk_image_new_from_file(IMAGE_RED);
 			gtk_container_add(GTK_CONTAINER(eventbox),image);
@@ -192,7 +192,7 @@ GtkWidget* creat_main_window()
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
 	gtk_window_set_title(GTK_WINDOW(window),"bomb");
 	/* 20 the point of image. 5 the space between images */
-	gtk_window_set_default_size(GTK_WINDOW(window),(20+5)*row,(20+5)*col);
+	gtk_window_set_default_size(GTK_WINDOW(window),(20+5)*col,(20+5)*row);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);  
 	return window;
 }
@@ -204,7 +204,7 @@ int main(int argc,char *argv[])
 	GtkWidget* table;
 	gint i,j;
   
-	row=20;
+	row=10;
 	col=20;
 	init_mine_map_rand(row);
   
