@@ -118,9 +118,18 @@ void init_mine_map_with_default()
 {
 	uint8_t i,j;
 	uint8_t m,n;
-	row=8;
-	col=8;
 
+	/* clear all buffer */
+	for(i=0;i<MAX_RAW;i++)
+		for(j=0;j<MAX_COL;j++)
+		{
+			mine_map[i][j]=0;
+			mine_digged[i][j]=0;
+			mine_number[i][j]=0;
+			mine_marked[i][j]=0;
+		}
+
+	/* load the default map though it may smaller than the map */
 	for(i=0;i<row;i++)
 		for(j=0;j<col;j++)
 		{
@@ -149,37 +158,6 @@ void init_mine_map_with_default()
  
 		}
 }
-/* void init_mine_map(uint8_t** map) */
-/* { */
-/*   uint8_t i,j; */
-/*   uint8_t m,n; */
-
-/*   for(i=0;i<row;i++) */
-/* 	  for(j=0;j<col;j++) */
-/* 		{ */
-/* 		  mine_map[i][j]=map[i][j]; */
-/* 		  mine_digged[i][j]=0; */
-/* 		  mine_number[i][j]=0; */
-/* 		  mine_marked[i][j]=0; */
-/* 		} */
-
-/*  for(i=0;i<row;i++) */
-/* 	  for(j=0;j<col;j++) */
-/* 		{ */
-/* 		  if(mine_map[i][j]) */
-/* 			{ */
-/* 			  //9 stands for a mine here,for there is no more than 8 mine around */
-/* 			  mine_number[i][j]=9; */
-/* 			  continue; */
-/* 			} */
-/* 		  for(m=((i==0)?i:i-1);m<=((i==row-1)?i:i+1);m++) */
-/* 		  	for(n=((j==0)?j:j-1);n<=((j==col-1)?j:j+1);n++) */
-/* 		  	  { */
-/* 		  		mine_number[i][j]+=mine_map[m][n]; */
-/* 		  	  } */
-/*  		} */
-/*  } */
-
 
 void init_mine_map(uint8_t* map_head)
 {
@@ -211,6 +189,8 @@ void init_mine_map(uint8_t* map_head)
 				}
  		}
 }
+
+/* parameter : the number of bomb */
 void init_mine_map_rand(uint32_t count)
 {
 	uint32_t tmp;

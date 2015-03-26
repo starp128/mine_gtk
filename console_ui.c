@@ -80,36 +80,30 @@ int main()
 	char cmd;
 	char dum;
 
-	/* uint8_t* p; */
-	/* p=(uint8_t*)&m[0][0];//we the address of the 2-dem arry */
-  
-	/* row=10; */
-	/* col=10; */
-	/* init_mine_map(p); */
-	/* //init_mine_map_with_default(); */
-  
-
-	/* initial with 5 bombs exist */
+	/* configure size of map and number of bombs */
+	row=20;
+	col=20;
 	init_mine_map_rand(1);
+
 	print_map();
 	print_status();
 	print_result();
   
-	printf("select by modey\n inter 'd' for dig\n inter 'm' for mark\n");
+	printf("type 'd' for dig\n type 'm' for mark\n");
 	while(1)
 	{
-		printf("slect mode('m'or'd') ->");
+		printf("please select('m'or'd') ->");
 		scanf("%c",&cmd);
 		while( (cmd!='d')&&(cmd!='m'))
 		{
 			scanf("%c",&cmd);
+			printf("please select('m'or'd') ->");
 		}
 	 
 		if(cmd=='d')
 		{
-			printf("select the point(n,m)->");
+			printf("type the point(row,column)->");
 			scanf("%d,%d",&i,&j);
-			// printf("dig %d,%d \n",i,j);
 
 			s=dig((uint8_t)i,(uint8_t)j);
 
@@ -120,7 +114,7 @@ int main()
 				break;
 			case clicked_on_gameover:
 				printf("game over\n");
-				break;
+				return;
 			case clicked_on_empty:
 				print_result();
 				break;

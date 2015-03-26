@@ -28,7 +28,7 @@ struct supper_button
 	enum button_status status;
 };
 
-struct supper_button my_supper_button[8][8];
+struct supper_button my_supper_button[MAX_RAW][MAX_COL];
 
 void action()
 {
@@ -102,8 +102,8 @@ void on_button_clicked(GtkWidget* button,GdkEvent *event,gpointer userdata)
 	gint index_x,index_y;
 	gint button_number=0;//1 means left 3 mean right
   
-	index_x=n/8;
-	index_y=n%8;
+	index_x=n/row;
+	index_y=n%row;
 	button_number=event->button.button;
 	//  g_print("button %d\n",event->button.button);
 
@@ -191,7 +191,8 @@ GtkWidget* creat_main_window()
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
 	gtk_window_set_title(GTK_WINDOW(window),"bomb");
-	gtk_window_set_default_size(GTK_WINDOW(window),200,200);
+	/* 20 the point of image. 5 the space between images */
+	gtk_window_set_default_size(GTK_WINDOW(window),(20+5)*row,(20+5)*col);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);  
 	return window;
 }
@@ -203,9 +204,9 @@ int main(int argc,char *argv[])
 	GtkWidget* table;
 	gint i,j;
   
-	row=8;
-	col=8;
-	init_mine_map_rand(3);
+	row=20;
+	col=20;
+	init_mine_map_rand(row);
   
 
 	gtk_init(&argc,&argv);
@@ -215,7 +216,7 @@ int main(int argc,char *argv[])
 	frame=gtk_frame_new("frame");
 	gtk_container_add(GTK_CONTAINER(window),frame);
 
-	table=creat_box_table(row,col); //creat a 5X5 table of botton;
+	table=creat_box_table(row,col); //creat a table of botton;
 	gtk_container_add(GTK_CONTAINER(frame),table);
 	gtk_widget_show_all(window);
   
