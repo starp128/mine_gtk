@@ -1,5 +1,6 @@
 all:
 	gcc `pkg-config --cflags gtk+-3.0` mine.c mine_gtk_ui.c `pkg-config --libs gtk+-3.0` -o mine
+	gcc `pkg-config --cflags gtk+-3.0` mine.c console_ui.c `pkg-config --libs gtk+-3.0` -o mine_console_ui
 
 tags:
 	find . -name "*.[chCH]" -print | etags -
@@ -14,7 +15,7 @@ help:
 	@echo "make clean to clean the target file and the backup files"
 
 clean:
-	rm -f mine
+	rm -f mine mine_console_ui
 	rm -f *~
 	rm -f \#*\#
 	rm -f TAGS
