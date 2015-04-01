@@ -204,9 +204,9 @@ int main(int argc,char *argv[])
 	GtkWidget* table;
 	gint i,j;
   
-	row=10;
-	col=20;
-	init_mine_map_rand(row);
+	row=30;
+	col=50;
+	init_mine_map_rand(1);
   
 
 	gtk_init(&argc,&argv);
